@@ -1,0 +1,22 @@
+{
+  "name": "keyboardwarrior",
+  "version": "1.0.0",
+  "description": "Ludum Dare Event 55 game by TolMera",
+  "main": ".",
+  "scripts": {
+    "test": "."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TolMera/KeyboardWarrior.git"
+  },
+  "author": "Bjorn Macintosh <TolMera>",
+  "bugs": {
+    "url": "https://github.com/TolMera/KeyboardWarrior/issues"
+  },
+  "homepage": "https://github.com/TolMera/KeyboardWarrior#readme",
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "sass": "^1.75.0"
+  }
+}
