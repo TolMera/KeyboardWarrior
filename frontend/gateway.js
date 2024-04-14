@@ -13,23 +13,13 @@ class Connection {
  */
 class Game {
     currentScreen;
+    chartData = [];
 
     constructor() {
         console.debug(`Loading: ${this.constructor.name}`);
         this.currentScreen = "mainMenu";
 
-        // Load mainMenu script
-        const mainMenu = '/view/mainMenu/index.js';
-        $.getScript(mainMenu)
-            .done((script, textStatus) => {
-                console.log('loaded: 1f1b5e9d-b681-5831-bb45-7d9d2cd74cf3');
-                // You can now use any functionality that the script added
-                KeyboardWarrior.mainMenu.render();
-            })
-            .fail((jqxhr, settings, exception) => {
-                console.error('Error loading: d573a929-7de5-5e7a-bd6d-9427c4550a37');
-                console.error(exception);
-            });
+        this.mainMenuScreen();
     }
 
     newGame() {
@@ -53,6 +43,36 @@ class Game {
 
         return this;
     }
+
+    mainMenuScreen() {
+        this.dynamicLoad('/view/mainMenu/index.js', 'mainMenu');
+    }
+
+    tutorialScreen() {
+        this.dynamicLoad('/view/tutorial/index.js', 'tutorial');
+    }
+
+    playScreen() {
+        this.dynamicLoad('/view/play/index.js', 'play');
+    }
+
+    dynamicLoad(path, name) {
+        if (!KeyboardWarrior[name]) {
+            $.getScript(path)
+                .done((script, textStatus) => {
+                    console.log('loaded: 1f1b5e9d-b681-5831-bb45-7d9d2cd74cf3');
+                    // You can now use any functionality that the script added
+                    KeyboardWarrior[name].render();
+                })
+                .fail((jqxhr, settings, exception) => {
+                    console.error('Error loading: d573a929-7de5-5e7a-bd6d-9427c4550a37');
+                    console.error(exception);
+                });
+        }
+        else {
+            KeyboardWarrior[name].render();
+        }
+    }
 }
 
 /**
@@ -60,7 +80,6 @@ class Game {
  */
 class GameScreen {
     name;
-
 
     constructor(name) {
         console.debug(`Loading: ${this.constructor.name}`);
@@ -76,6 +95,12 @@ class GameScreen {
 
 const cssUtilities = '/utilities/css.js';
 $.getScript(cssUtilities);
+const jsUtilities = '/utilities/js.js';
+$.getScript(jsUtilities);
+const textUtilities = '/utilities/text.js';
+$.getScript(textUtilities);
+const chartUtilities = '/utilities/chart.js';
+$.getScript(chartUtilities);
 
 globalThis.KeyboardWarrior = {};
 KeyboardWarrior.connection = new Connection();

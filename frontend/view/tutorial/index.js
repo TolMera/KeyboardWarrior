@@ -1,5 +1,5 @@
-class MainMenu extends GameScreen {
-    template = '/view/mainMenu/template.html';
+class Tutorial extends GameScreen {
+    template = '/view/tutorial/template.html';
 
     constructor() {
         super();
@@ -39,15 +39,12 @@ class MainMenu extends GameScreen {
 
     // Load CSS files
     loadMyCSS() {
-        loadNewCSS('/view/mainMenu/index.css');
+        loadNewCSS('/view/tutorial/index.css');
     }
 
     attachListeners() {
-        $('#loadGame').on('click', KeyboardWarrior.game.loadGameState);
-        // $('#newGame').
-        // $('#tutorial').
-        // $('#settings').
+        $('#back').on('click', KeyboardWarrior.game.mainMenuScreen.bind(KeyboardWarrior.game));
     }
 }
 
-globalThis.KeyboardWarrior.mainMenu = new MainMenu();
+globalThis.KeyboardWarrior.tutorial = new Tutorial();

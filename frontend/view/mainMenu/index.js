@@ -43,11 +43,12 @@ class MainMenu extends GameScreen {
     }
 
     attachListeners() {
-        $('#loadGame').on('click', KeyboardWarrior.game.loadGameState);
-        // $('#newGame').
-        // $('#tutorial').
+        $('#loadGame').on('click', KeyboardWarrior.game.loadGameState.bind(KeyboardWarrior.game));
+        $('#newGame').on('click', KeyboardWarrior.game.playScreen.bind(KeyboardWarrior.game));
+        $('#tutorial').on('click', KeyboardWarrior.game.tutorialScreen.bind(KeyboardWarrior.game));
         // $('#settings').
     }
+
 }
 
 globalThis.KeyboardWarrior.mainMenu = new MainMenu();
